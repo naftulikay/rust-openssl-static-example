@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+USER=circleci
+HOME=/home/circleci
+PATH="$HOME/.cargo/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+cd $HOME/project
+
+sudo chown -R $USER:$USER target/
+sudo chown -R $USER:$USER $HOME/.cargo/registry
+
+echo "Installing OpenSSL Static Libraries..."
+sudo yum install -y openssl-static >/dev/null
+
+exec bash -lc '
+  OPENSSL_STATIC=1 cargo build --lib ;
+'

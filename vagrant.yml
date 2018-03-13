@@ -1,0 +1,61 @@
+---
+- name: build
+  hosts: all
+  become: true
+  roles:
+    - role: vagrant-docker
+    - role: vagrant-rust-dev
+    - role: terraform
+      version: 0.11.3
+
+  tasks:
+    - name: install devel packages
+      package: name={{ item }} state=present
+      with_items:
+       - gcc
+       - make
+       - kernel-devel
+       - zip
+       - openssl-devel
+       - openssl-static
+
+    - name: install sanity packages
+      package: name={{ item }} state=present
+      with_items:
+       - bash-completion
+       - jq
+       - man-pages
+       - vim-enhanced
+
+    - name: install
+      package: name=epel-release state=present
+
+    - name: install
+      package: name=python-pip state=present
+
+    - name: install python devel dependencies
+      package: name={{ item }} state=present
+      with_items:
+        - python-devel
+        - python34-devel
+        - openssl-devel
+
+    - name: configure aws env passthrough
+      blockinfile:
+        dest: /etc/ssh/sshd_config
+        block:
+          AcceptEnv AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
+      notify: restart ssh
+
+    - name: install git
+      package: name=git state=present
+
+    - name: install
+      pip: name=awscli state=present
+
+    - name: link bash completer
+      file: src=/usr/bin/aws_bash_completer dest=/etc/bash_completion.d/aws state=link
+
+  handlers:
+    - name: restart ssh
+      service: name=sshd state=restarted

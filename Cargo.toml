@@ -1,0 +1,17 @@
+[package]
+name = "api"
+version = "0.1.0"
+authors = ["Naftuli Kay <me@naftuli.wtf>"]
+publish = false
+
+[lib]
+name = "lambda"
+crate-type = ["cdylib"]
+
+[dependencies]
+cpython = { version = "0.1", default-features = false }
+crowbar = { version = "0.2", default-features = false }
+openssl = "0.10.5"
+
+[features]
+default = ["cpython/python3-sys"]

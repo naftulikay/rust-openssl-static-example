@@ -1,0 +1,3 @@
+target
+.vagrant
+.ansible/galaxy-roles

@@ -1,0 +1,7 @@
+---
+- name: vagrant-docker
+  src: naftulikay.vagrant-docker
+- name: terraform
+  src: naftulikay.terraform
+- name: vagrant-rust-dev
+  src: naftulikay.vagrant-rust-dev
