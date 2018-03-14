@@ -21,8 +21,12 @@ in the actual Amazon Linux runtime environment._ This causes the linker to panic
 **The Attempted Solution:** By attempting to build OpenSSL statically into the shared library, we hope to work around
 the issue by not linking against OpenSSL.
 
-**Current Status:** **Not Working.** Despite following the instructions for the `openssl` crate and throwing in linker
-configuration to the crate, the shared library is still linked against OpenSSL.
+**Current Status:** **Working.**
+
+> Despite following the instructions for the `openssl` crate and throwing in linker configuration to the crate, the
+> shared library is still linked against OpenSSL.
+
+Apparently, [not passing `OPENSSL_LIB_DIR` and `OPENSSL_INCLUDE_DIR` makes `OPENSSL_STATIC` have no effect.](https://github.com/naftulikay/rust-openssl-static-example/pull/3). With #3, all is working.
 
 We have the following Cargo configuration:
 
