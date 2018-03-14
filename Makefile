@@ -5,7 +5,7 @@ DOCKER_IMAGE:=naftulikay/circleci-amazonlinux-rust:lambda
 
 build:
 	@docker run -it --rm \
-	  -v /vagrant:/home/circleci/project \
+	  -v $(PWD):/home/circleci/project \
 	  -v $(CACHE_DIR)/cargo/registry:/home/circleci/.cargo/registry \
 	  -v $(CACHE_DIR)/target:/home/circleci/project/target \
 	  -v $(PWD)/bin:/home/circleci/.local/bin \
@@ -14,7 +14,7 @@ build:
 
 clean:
 	@docker run -it --rm \
-		-v /vagrant:/home/circleci/project \
+		-v $(PWD):/home/circleci/project \
 		-v $(CACHE_DIR)/cargo/registry:/home/circleci/.cargo/registry \
 		-v $(CACHE_DIR)/target:/home/circleci/project/target \
 		-v $(PWD)/bin:/home/circleci/.local/bin \
@@ -23,7 +23,7 @@ clean:
 
 test: build
 	@docker run -it --rm \
-		-v /vagrant:/home/circleci/project \
+		-v $(PWD):/home/circleci/project \
 		-v $(CACHE_DIR)/cargo/registry:/home/circleci/.cargo/registry \
 		-v $(CACHE_DIR)/target:/home/circleci/project/target \
 		-v $(PWD)/bin:/home/circleci/.local/bin \

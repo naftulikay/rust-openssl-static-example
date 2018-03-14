@@ -13,6 +13,7 @@ dependencies = [
  "cpython 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "crowbar 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "openssl 0.10.5 (registry+https://github.com/rust-lang/crates.io-index)",
+ "openssl-sys 0.9.27 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]

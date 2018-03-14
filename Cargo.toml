@@ -12,6 +12,7 @@ crate-type = ["cdylib"]
 cpython = { version = "0.1", default-features = false }
 crowbar = { version = "0.2", default-features = false }
 openssl = "0.10.5"
+openssl-sys = "0.9.27"
 
 [features]
 default = ["cpython/python3-sys"]
