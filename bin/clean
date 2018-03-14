@@ -11,4 +11,4 @@ cd $HOME/project
 sudo chown -R $USER:$USER target/
 sudo chown -R $USER:$USER $HOME/.cargo/registry
 
-find target/ -mindepth 1 -exec rm -fr {} \;
+find target/ -mindepth 1 -exec rm -fr {} \; || true
