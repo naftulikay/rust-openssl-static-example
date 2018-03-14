@@ -11,7 +11,7 @@ simply executes our Rust payload.
 We use [a Docker container][docker] running the Lambda version of Amazon Linux for builds. This makes the execution
 environment as close to the build environment as possible.
 
-**The Problem:** AWS runs an old version of Amazon Linux wihout any software updates. However, in the Docker container
+**The Problem:** AWS runs an old version of Amazon Linux without any software updates. However, in the Docker container
 where I build my shared library, installing `openssl-devel` automatically upgrades OpenSSL from 1.0.1 to 1.0.2.
 Therefore, it is not possible to build against the version of `openssl` which is present in the Amazon Linux image at
 boot time; in the Docker image, simply by installing `openssl-devel` it is upgraded to 1.0.2, _which is not present
