@@ -14,6 +14,10 @@ sudo chown -R $USER:$USER $HOME/.cargo/registry
 echo "Installing OpenSSL Static Libraries..."
 sudo yum install -y openssl-static >/dev/null
 
+# all three environment variables must be present to coerce it to static link
 exec bash -lc '
-  OPENSSL_STATIC=1 cargo build --lib ;
+  OPENSSL_STATIC=1 \
+  OPENSSL_LIB_DIR=/usr/lib64 \
+  OPENSSL_INCLUDE_DIR=/usr/include/openssl \
+    cargo build --lib ;
 '

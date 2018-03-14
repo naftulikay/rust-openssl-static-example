@@ -29,3 +29,11 @@ test: build
 		-v $(PWD)/bin:/home/circleci/.local/bin \
 		$(DOCKER_IMAGE) \
 		.local/bin/test
+
+shell:
+	@docker run -it --rm \
+		-v $(PWD):/home/circleci/project \
+		-v $(CACHE_DIR)/cargo/registry:/home/circleci/.cargo/registry \
+		-v $(CACHE_DIR)/target:/home/circleci/project/target \
+		-v $(PWD)/bin:/home/circleci/.local/bin \
+		$(DOCKER_IMAGE)
